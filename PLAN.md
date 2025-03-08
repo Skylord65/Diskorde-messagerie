@@ -92,94 +92,93 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 ### Dépendances des tâches
 
 ```mermaid
-%%{init: {'theme':'dark','flowchart': { 'curve': 'bumpX', "defaultRenderer": "elk"}}}%%
-graph TB
+flowchart-elk TD
 subgraph P0["Phase 0 : Préparation"]
-  T0_0[Spec]
-  T0_1[Proto]
-  T0_2[Planif]
+  T0_0(Spec)
+  T0_1(Proto)
+  T0_2(Planif)
 end
 
 subgraph P1["Phase 1 : Communication de base"]
-  T1_0[Sockets]
-  T1_1[ChiffBase]
-  T1_2[ClientCLI]
-  T1_3[MsgSimple]
-  T1_4[Serveurs]
+  T1_0(Sockets)
+  T1_1(ChiffBase)
+  T1_2(ClientCLI)
+  T1_3(MsgSimple)
+  T1_4(Serveurs)
 end
 
 subgraph P2["Phase 2 : Gestion des utilisateurs et des salons"]
-  T2_0[Utilisateurs]
-  T2_1[Salons]
-  T2_2[Contacts]
-  T2_3[Status]
-  T2_4[Profil]
-  T2_5[Invits]
-  T2_6[DM]
+  T2_0(Utilisateurs)
+  T2_1(Salons)
+  T2_2(Contacts)
+  T2_3(Status)
+  T2_4(Profil)
+  T2_5(Invits)
+  T2_6(DM)
 end
 
 subgraph P3["Phase 3 : Gestion avancée des messages"]
-  T3_0[MsgMod]
-  T3_1[MsgDel]
-  T3_2[Reacts]
-  T3_3[Pinned]
-  T3_4[Fichiers]
-  T3_5[MediaAff]
-  T3_6[History]
-  T3_7[MsgSearch]
+  T3_0(MsgMod)
+  T3_1(MsgDel)
+  T3_2(Reacts)
+  T3_3(Pinned)
+  T3_4(Fichiers)
+  T3_5(MediaAff)
+  T3_6(History)
+  T3_7(MsgSearch)
 end
 
 subgraph P4["Phase 4 : Sécurisation et intégrité des données"]
-  T4_0[ChiffRob]
-  T4_1[AuthSec]
-  T4_2[MsgSig]
-  T4_3[Report]
-  T4_4[AuditLog]
+  T4_0(ChiffRob)
+  T4_1(AuthSec)
+  T4_2(MsgSig)
+  T4_3(Report)
+  T4_4(AuditLog)
 end
 
 subgraph P5["Phase 5 : Interaction et automatisation"]
-  T5_0[MiniLang]
-  T5_1[Markdown]
-  T5_2[Notifs]
-  T5_3[Logging]
-  T5_4[RolesAdv]
-  T5_5[Threads]
-  T5_6[Polls]
-  T5_7[API]
-  T5_8[Bots]
-  T5_9[Plugins]
+  T5_0(MiniLang)
+  T5_1(Markdown)
+  T5_2(Notifs)
+  T5_3(Logging)
+  T5_4(RolesAdv)
+  T5_5(Threads)
+  T5_6(Polls)
+  T5_7(API)
+  T5_8(Bots)
+  T5_9(Plugins)
 end
 
 subgraph P6["Phase 6 : Communication en temps réel"]
-  T6_0[AVCall]
-  T6_1[ScreenShare]
-  T6_2[AudioOpt]
-  T6_3[TempSal]
-  T6_4[ServerSearch]
-  T6_5[Fav]
+  T6_0(AVCall)
+  T6_1(ScreenShare)
+  T6_2(AudioOpt)
+  T6_3(TempSal)
+  T6_4(ServerSearch)
+  T6_5(Fav)
 end
 
 subgraph P7["Phase 7 : Interfaces utilisateur"]
-  T7_0[GTK]
-  T7_1[Qt]
-  T7_2[TUI]
-  T7_3[UIAdmin]
-  T7_4[ElecApp]
+  T7_0(GTK)
+  T7_1(Qt)
+  T7_2(TUI)
+  T7_3(UIAdmin)
+  T7_4(ElecApp)
 end
 
 subgraph P8["Phase 8 : Finalisation et déploiement"]
-  T8_0[Tests]
-  T8_1[Docs]
-  T8_2[Deploy]
-  T8_3[Monitor]
+  T8_0(Tests)
+  T8_1(Docs)
+  T8_2(Deploy)
+  T8_3(Monitor)
 end
 
 subgraph SEC["Phase SEC continue : Sécurité"]
-  SEC_0[Audit]
-  SEC_1[SecAudit]
-  SEC_2[PatchSec]
-  SEC_3[2FA]
-  SEC_4[SecTests]
+  SEC_0(Audit)
+  SEC_1(SecAudit)
+  SEC_2(PatchSec)
+  SEC_3(2FA)
+  SEC_4(SecTests)
 end
 
 T0_0 --> T0_1
