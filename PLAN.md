@@ -249,3 +249,78 @@ P7 --> P8
 ```
 
 ## Contributeurs responsables
+
+## Format des commits
+
+### Grammaire BNF
+
+```
+<commit> ::= <type> "(" <target> [":" <specifier>] ")" [": " <description>] ["; " <commit>]
+<type> ::= "add" | "fix" | "refactor" | "docs" | "test" | "style" | "perf" | "chore"
+<target> ::= <file> | <feature>
+<file> ::= <filename> "." <extension>
+<feature> ::= <identifier>
+<specifier> ::= <line_number> | <function_name>
+<line_number> ::= <number>
+<function_name> ::= <identifier>
+<description> ::= <text>
+```
+
+### Explication des éléments
+
+- **`<type>`** : Indique la nature de la modification.
+  - `add` : Ajout de code ou de fichiers.
+  - `fix` : Correction de bug.
+  - `refactor` : Réorganisation du code sans changement fonctionnel.
+  - `docs` : Ajout ou modification de documentation.
+  - `test` : Ajout ou modification de tests.
+  - `style` : Changement de formatage sans impact sur le code.
+  - `perf` : Amélioration des performances.
+  - `chore` : Maintenance du projet sans impact direct sur le code.
+
+- **`<target>`** : Spécifie le fichier ou la fonctionnalité concernée.
+- **`<specifier>`** *(optionnel)* : Précise une ligne ou une fonction ciblée.
+- **`<description>`** *(optionnel)* : Fournit un message explicatif.
+- **Les commits multiples** peuvent être séparés par `; `.
+
+### Exemples
+
+1. **Ajout d'un fichier de documentation**
+  ```sh
+  git commit -m "add(README.md) : Ajout du fichier README"
+  ```
+
+2. **Correction d'un bug sur une ligne spécifique**
+  ```sh
+  git commit -m "fix(main.c:42) : Correction du segfault ligne 42"
+  ```
+
+3. **Ajout d'une nouvelle fonction**
+  ```sh
+  git commit -m "add(utils.c:parse_input) : Ajout de la fonction parse_input"
+  ```
+
+4. **Refactorisation d'une fonction**
+  ```sh
+  git commit -m "refactor(server.c:handle_request) : Simplification de la logique"
+  ```
+
+5. **Modification du style (indentation, espaces, etc.)**
+  ```sh
+  git commit -m "style(config.py) : Correction des indentations"
+  ```
+
+6. **Amélioration des performances d'une boucle**
+  ```sh
+  git commit -m "perf(matrix.c:multiply) : Optimisation de la multiplication des matrices"
+  ```
+
+7. **Ajout de tests unitaires**
+  ```sh
+  git commit -m "test(math_utils.c) : Ajout des tests pour les fonctions mathématiques"
+  ```
+
+8. **Modification de plusieurs fichiers dans un seul commit**
+  ```sh
+  git commit -m "add(server.c:init_server) : Ajout de la fonction init_server; fix(client.c:connect) : Correction de la gestion des erreurs"
+  ```
