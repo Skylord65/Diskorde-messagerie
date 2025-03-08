@@ -1,3 +1,5 @@
+# Plan de développement
+
 ## Specifications
 
 ### Langage
@@ -245,3 +247,5 @@ SEC --> P8
 P6 --> P7
 P7 --> P8
 ```
+
+## Contributeurs responsables
