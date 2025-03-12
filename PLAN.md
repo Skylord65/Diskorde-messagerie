@@ -255,15 +255,37 @@ P7 --> P8
 ### Grammaire BNF
 
 ```
-<commit> ::= <type> "(" <target> [":" <specifier>] ")" [": " <description>] ["; " <commit>]
-<type> ::= "add" | "fix" | "refactor" | "docs" | "test" | "style" | "perf" | "chore"
-<target> ::= <file> | <feature>
-<file> ::= <filename> "." <extension>
+<commit> ::= <type> "(" <target> [":" <specifier>] ")" [":" <description>] [";" <commit>]
+
+<type> ::=
+  | "add"
+  | "fix"
+  | "refactor"
+  | "docs"
+  | "test"
+  | "style"
+  | "perf"
+  | "chore"
+
+<target> ::=
+  | <file>
+  | <feature>
+
+<file> ::= r"[^/\0]+"
+
 <feature> ::= <identifier>
-<specifier> ::= <line_number> | <function_name>
-<line_number> ::= <number>
+
+<specifier> ::=
+  | <line_number>
+  | <function_name>
+
+<line_number> ::= r"[1-9][0-9]*"
+
 <function_name> ::= <identifier>
-<description> ::= <text>
+
+<identifier> ::= r"[a-zA-Z_][a-zA-Z0-9_]*"
+
+<description> ::= r"[^;]+"
 ```
 
 ### Explication des éléments
