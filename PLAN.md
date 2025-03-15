@@ -32,7 +32,13 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | ClientCLI    | Développement d’un client en ligne de commande pour tests et débogage                               |             |
 | MsgSimple    | Implémentation d’une gestion simple des messages (envoi/réception)                                  |             |
 | Serveurs     | Création et gestion de serveurs                                                                     |             |
-|              | **Phase 2 : Gestion des utilisateurs et des salons**                                                | [Skylord65](https://github.com/Skylord65)   |
+|              | **Phase 2 : Gestion du stockage des données**                                                       | [Skylord65](https://github.com/Skylord65)   |
+| DBStruct     | Choix et mise en place de la structure de stockage (arbre B, skiplist, autre)                       |             |
+| DBStorage    | Stockage et récupération des données en mémoire et sur disque                                       |             |
+| DBLang       | Création d’un langage de requêtes pour interagir avec la base de données                            |             |
+| DBAPI        | Définition de l’API pour interagir avec la base de données                                          |             |
+| DBSchema     | Création des schémas de base de données (utilisateurs, messages, salons, messages)                  |             |
+|              | **Phase 3 : Gestion des utilisateurs et des salons**                                                | [Skylord65](https://github.com/Skylord65)   |
 | Utilisateurs | Gestion des utilisateurs (inscription, création de compte, connexion, rôles)                        |             |
 | Salons       | Gestion et catégorisation des salons (textuels, vocaux, vidéos)                                     |             |
 | Contacts     | Gestion des connaissances (ajout, suppression, blocage, statuts : amis, collègue, etc.)             |             |
@@ -40,7 +46,7 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | Profil       | Profil utilisateur avec avatar (pdp simple) et bio                                                  |             |
 | Invits       | Gestion des invitations et des liens d’invitation                                                   |             |
 | DM           | Messages privés                                                                                     |             |
-|              | **Phase 3 : Gestion avancée des messages**                                                          | [Rhexephon](https://github.com/Rhexephon)   |
+|              | **Phase 4 : Gestion avancée des messages**                                                          | [Rhexephon](https://github.com/Rhexephon)   |
 | MsgMod       | Envoi et modification de messages                                                                   |             |
 | MsgDel       | Suppression de messages (pour soi ou pour tous)                                                     |             |
 | Reacts       | Réactions aux messages avec emojis                                                                  |             |
@@ -49,13 +55,13 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | MediaAff     | Lecture et affichage des vidéos, GIFs et images intégrées                                           |             |
 | History      | Historique des messages et notifications                                                            |             |
 | MsgSearch    | Recherche de messages (avancée, éventuellement regex)                                               |             |
-|              | **Phase 4 : Sécurisation et intégrité des données**                                                 | [Rhexephon](https://github.com/Rhexephon)   |
+|              | **Phase 5 : Sécurisation et intégrité des données**                                                 | [Rhexephon](https://github.com/Rhexephon)   |
 | ChiffRob     | Mise en place d’un chiffrement robuste (RSA, Diffie-Hellman)                                        |             |
 | AuthSec      | Sécurisation de l’authentification (multi-facteurs, tokens)                                         |             |
 | MsgSig       | Validation de l’intégrité des messages (signatures numériques)                                      |             |
 | Report       | Signalement d’utilisateurs ou de messages                                                           |             |
 | AuditLog     | Journaux d’audit pour les serveurs                                                                  |             |
-|              | **Phase 5 : Interaction et automatisation**                                                         | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase 6 : Interaction et automatisation**                                                         | [Manolo-dev](https://github.com/Manolo-dev)  |
 | MiniLang     | Développement d’un mini-langage de commandes (admin & modération, intégrant le système de mentions) |             |
 | Markdown     | Implémentation d’un compilateur markdown pour affichage enrichi                                     |             |
 | Notifs       | Gestion des notifications (messages, mentions, alertes)                                             |             |
@@ -66,20 +72,20 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | API          | API                                                                                                 |             |
 | Bots         | Bots et automatisation                                                                              |             |
 | Plugins      | Plugins et intégrations tierces (YouTube, Twitch, Spotify, etc.)                                    |             |
-|              | **Phase 6 : Communication en temps réel**                                                           | [Skylord65](https://github.com/Skylord65)   |
+|              | **Phase 7 : Communication en temps réel**                                                           | [Skylord65](https://github.com/Skylord65)   |
 | AVCall       | Appels vocaux et vidéo en groupe                                                                    |             |
 | ScreenShare  | Partage d’écran                                                                                     |             |
 | AudioOpt     | Suppression du bruit et réglage du gain automatique                                                 |             |
 | TempSal      | Salons temporaires                                                                                  |             |
 | ServerSearch | Recherche de serveurs publics                                                                       |             |
 | Fav          | Système de favoris ou raccourcis vers des messages/serveurs                                         |             |
-|              | **Phase 7 : Interfaces utilisateur**                                                                | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase 8 : Interfaces utilisateur**                                                                | [Manolo-dev](https://github.com/Manolo-dev)  |
 | GTK          | Conception de l’interface graphique avec GTK                                                        |             |
 | Qt           | Portage/adaptation pour Qt (Windows)                                                                |             |
 | TUI          | Développement d’une interface en TUI (optionnelle)                                                  |             |
 | UIAdmin      | Intégration des contrôles d’administration et modération                                            |             |
 | ElecApp      | Electron-app pour une version web et mobile                                                         |             |
-|              | **Phase 8 : Finalisation et déploiement**                                                           | [Skylord65](https://github.com/Skylord65)   |
+|              | **Phase 9 : Finalisation et déploiement**                                                           | [Skylord65](https://github.com/Skylord65)   |
 | Tests        | Mise en place des tests unitaires et d’intégration                                                  |             |
 | Docs         | Rédaction de la documentation technique et utilisateur                                              |             |
 | Deploy       | Déploiement du serveur central et configuration                                                     |             |
@@ -109,70 +115,78 @@ subgraph P1["Phase 1 : Communication de base"]
   T1_4(Serveurs)
 end
 
-subgraph P2["Phase 2 : Gestion des utilisateurs et des salons"]
-  T2_0(Utilisateurs)
-  T2_1(Salons)
-  T2_2(Contacts)
-  T2_3(Status)
-  T2_4(Profil)
-  T2_5(Invits)
-  T2_6(DM)
+subgraph P2["Phase 2 : Gestion du stockage des données"]
+  T2_0(DBStruct)
+  T2_1(DBStorage)
+  T2_2(DBLang)
+  T2_3(DBAPI)
+  T2_4(DBSchema)
 end
 
-subgraph P3["Phase 3 : Gestion avancée des messages"]
-  T3_0(MsgMod)
-  T3_1(MsgDel)
-  T3_2(Reacts)
-  T3_3(Pinned)
-  T3_4(Fichiers)
-  T3_5(MediaAff)
-  T3_6(History)
-  T3_7(MsgSearch)
+subgraph P3["Phase 3 : Gestion des utilisateurs et des salons"]
+  T3_0(Utilisateurs)
+  T3_1(Salons)
+  T3_2(Contacts)
+  T3_3(Status)
+  T3_4(Profil)
+  T3_5(Invits)
+  T3_6(DM)
 end
 
-subgraph P4["Phase 4 : Sécurisation et intégrité des données"]
-  T4_0(ChiffRob)
-  T4_1(AuthSec)
-  T4_2(MsgSig)
-  T4_3(Report)
-  T4_4(AuditLog)
+subgraph P4["Phase 4 : Gestion avancée des messages"]
+  T4_0(MsgMod)
+  T4_1(MsgDel)
+  T4_2(Reacts)
+  T4_3(Pinned)
+  T4_4(Fichiers)
+  T4_5(MediaAff)
+  T4_6(History)
+  T4_7(MsgSearch)
 end
 
-subgraph P5["Phase 5 : Interaction et automatisation"]
-  T5_0(MiniLang)
-  T5_1(Markdown)
-  T5_2(Notifs)
-  T5_3(Logging)
-  T5_4(RolesAdv)
-  T5_5(Threads)
-  T5_6(Polls)
-  T5_7(API)
-  T5_8(Bots)
-  T5_9(Plugins)
+subgraph P5["Phase 5 : Sécurisation et intégrité des données"]
+  T5_0(ChiffRob)
+  T5_1(AuthSec)
+  T5_2(MsgSig)
+  T5_3(Report)
+  T5_4(AuditLog)
 end
 
-subgraph P6["Phase 6 : Communication en temps réel"]
-  T6_0(AVCall)
-  T6_1(ScreenShare)
-  T6_2(AudioOpt)
-  T6_3(TempSal)
-  T6_4(ServerSearch)
-  T6_5(Fav)
+subgraph P6["Phase 6 : Interaction et automatisation"]
+  T6_0(MiniLang)
+  T6_1(Markdown)
+  T6_2(Notifs)
+  T6_3(Logging)
+  T6_4(RolesAdv)
+  T6_5(Threads)
+  T6_6(Polls)
+  T6_7(API)
+  T6_8(Bots)
+  T6_9(Plugins)
 end
 
-subgraph P7["Phase 7 : Interfaces utilisateur"]
-  T7_0(GTK)
-  T7_1(Qt)
-  T7_2(TUI)
-  T7_3(UIAdmin)
-  T7_4(ElecApp)
+subgraph P7["Phase 7 : Communication en temps réel"]
+  T7_0(AVCall)
+  T7_1(ScreenShare)
+  T7_2(AudioOpt)
+  T7_3(TempSal)
+  T7_4(ServerSearch)
+  T7_5(Fav)
 end
 
-subgraph P8["Phase 8 : Finalisation et déploiement"]
-  T8_0(Tests)
-  T8_1(Docs)
-  T8_2(Deploy)
-  T8_3(Monitor)
+subgraph P8["Phase 8 : Interfaces utilisateur"]
+  T8_0(GTK)
+  T8_1(Qt)
+  T8_2(TUI)
+  T8_3(UIAdmin)
+  T8_4(ElecApp)
+end
+
+subgraph P9["Phase 9 : Finalisation et déploiement"]
+  T9_0(Tests)
+  T9_1(Docs)
+  T9_2(Deploy)
+  T9_3(Monitor)
 end
 
 subgraph SEC["Phase SEC continue : Sécurité"]
@@ -191,54 +205,63 @@ T1_0 --> T1_1
 T1_0 --> T1_2
 T1_0 --> T1_3
 T1_0 --> T1_4
-T1_1 --> T4_0
-T1_3 --> T3_0
-T1_3 --> T3_6
-T1_3 --> T4_2
-T1_4 --> T2_1
-T2_0 --> T2_2
-T2_0 --> T2_4
-T2_0 --> T2_5
-T2_4 --> T2_2
-T2_1 --> T2_6
-T2_5 --> T2_6
-T2_6 --> T3_0
-T2_6 --> T3_1
-T2_6 --> T3_2
-T2_6 --> T3_3
-T2_6 --> T3_4
-T2_6 --> T3_5
-T2_6 --> T3_6
-T3_0 --> T3_1
+T1_1 --> T5_0
+T1_3 --> T4_0
+T1_3 --> T4_6
+T1_3 --> T5_2
+T1_4 --> T3_1
+T2_0 --> T2_1
+T2_1 --> T2_2
+T2_2 --> T2_3
+T2_4 --> T3_0
+T2_4 --> T3_1
+T2_4 --> T3_2
+T2_3 --> T3_0
+T2_3 --> T3_1
+T2_3 --> T3_3
 T3_0 --> T3_2
-T3_0 --> T3_3
-T3_4 --> T3_5
-T3_6 --> T3_7
-T3_6 --> T5_2
-T3_6 --> T5_5
-T3_6 --> T6_5
+T3_0 --> T3_4
+T3_0 --> T3_5
+T3_4 --> T3_2
+T3_1 --> T3_6
+T3_5 --> T3_6
+T3_6 --> T4_0
+T3_6 --> T4_1
+T3_6 --> T4_2
+T3_6 --> T4_3
+T3_6 --> T4_4
+T3_6 --> T4_5
+T3_6 --> T4_6
+T4_0 --> T4_1
 T4_0 --> T4_2
-T4_1 --> SEC_3
-T4_2 --> T3_1
-T4_2 --> T3_3
-T4_2 --> T3_6
-T4_3 --> T4_4
-T5_0 --> T5_5
-T5_1 --> T5_7
-T5_2 --> T6_4
-T5_2 --> T6_5
-T5_4 --> T5_5
-T5_7 --> T5_8
-T5_7 --> T5_9
-T6_0 --> T6_1
-T6_0 --> T6_2
-T6_3 --> T6_5
-T7_0 --> T7_3
-T7_1 --> T7_3
-T7_2 --> T7_3
-T8_0 --> T8_2
+T4_0 --> T4_3
+T4_4 --> T4_5
+T4_6 --> T4_7
+T4_6 --> T6_2
+T4_6 --> T6_5
+T4_6 --> T7_5
+T5_0 --> T5_2
+T5_1 --> SEC_3
+T5_2 --> T4_1
+T5_2 --> T4_3
+T5_2 --> T4_6
+T5_3 --> T5_4
+T6_0 --> T6_5
+T6_1 --> T6_7
+T6_2 --> T7_4
+T6_2 --> T7_5
+T6_4 --> T6_5
+T6_7 --> T6_8
+T6_7 --> T6_9
+T7_0 --> T7_1
+T7_0 --> T7_2
+T7_3 --> T7_5
 T8_0 --> T8_3
-T8_1 --> T8_2
+T8_1 --> T8_3
+T8_2 --> T8_3
+T9_0 --> T9_2
+T9_0 --> T9_3
+T9_1 --> T9_2
 SEC_0 --> SEC_1
 SEC_1 --> SEC_2
 SEC_1 --> SEC_4
