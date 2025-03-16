@@ -10,6 +10,8 @@ On essayera de suivre les principes du TDD (Test-Driven Development) pour garant
 
 Le langage de programmation choisi est le C pour sa rapidité d'exécution et sa portabilité. Il permettra de développer un serveur et un client multi-plateformes.
 
+Nous développons un système de gestion base de données en OCaml, simple, minimal et sans fonctionnalités superflues.
+
 ### Architecture
 
 ECB (Entity-Control-Boundary) semble être une architecture adaptée à notre projet. Elle permet de séparer les différentes parties de l'application de manière claire et efficace tout en permettant une portabilité et une évolutivité du code.
