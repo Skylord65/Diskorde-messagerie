@@ -8,7 +8,7 @@ Le langage de programmation choisi est le C pour sa rapidité d'exécution et sa
 
 ### Architecture
 
-ECB (Entity-Control-Boundary) semble être une architecture adaptée à notre projet. Elle permet de séparer les différentes parties de l'application de manière claire et efficace tout en permettant une portable et une évolutivité du code.
+ECB (Entity-Control-Boundary) semble être une architecture adaptée à notre projet. Elle permet de séparer les différentes parties de l'application de manière claire et efficace tout en permettant une portabilité et une évolutivité du code.
 
 ### Interface
 
@@ -22,7 +22,7 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 
 | Nom          | Libellé                                                                                             | Responsable |
 |--------------|-----------------------------------------------------------------------------------------------------|-------------|
-|              | **Phase 0 : Préparation**                                                                           | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase 0 : Préparation**                                                                           | [Manolo-dev](https://github.com/Manolo-dev) |
 | Spec         | Analyse des spécifications et conception de l'architecture (ECB)                                    |             |
 | Proto        | Définition du protocole de communication (formats, commandes, sécurité, échanges de clés)           |             |
 | Planif       | Planification et répartition des tâches / choix des technologies (GTK, Qt, TUI)                     |             |
@@ -32,7 +32,7 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | ClientCLI    | Développement d’un client en ligne de commande pour tests et débogage                               |             |
 | MsgSimple    | Implémentation d’une gestion simple des messages (envoi/réception)                                  |             |
 | Serveurs     | Création et gestion de serveurs                                                                     |             |
-|              | **Phase 2 : Gestion du stockage des données**                                                       | [Skylord65](https://github.com/Skylord65)   |
+|              | **Phase 2 : Gestion du stockage des données**                                                       | [Manolo-dev](https://github.com/Manolo-dev) |
 | DBStruct     | Choix et mise en place de la structure de stockage (arbre B, skiplist, autre)                       |             |
 | DBStorage    | Stockage et récupération des données en mémoire et sur disque                                       |             |
 | DBLang       | Création d’un langage de requêtes pour interagir avec la base de données                            |             |
@@ -61,7 +61,7 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | MsgSig       | Validation de l’intégrité des messages (signatures numériques)                                      |             |
 | Report       | Signalement d’utilisateurs ou de messages                                                           |             |
 | AuditLog     | Journaux d’audit pour les serveurs                                                                  |             |
-|              | **Phase 6 : Interaction et automatisation**                                                         | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase 6 : Interaction et automatisation**                                                         | [Manolo-dev](https://github.com/Manolo-dev) |
 | MiniLang     | Développement d’un mini-langage de commandes (admin & modération, intégrant le système de mentions) |             |
 | Markdown     | Implémentation d’un compilateur markdown pour affichage enrichi                                     |             |
 | Notifs       | Gestion des notifications (messages, mentions, alertes)                                             |             |
@@ -79,7 +79,7 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | TempSal      | Salons temporaires                                                                                  |             |
 | ServerSearch | Recherche de serveurs publics                                                                       |             |
 | Fav          | Système de favoris ou raccourcis vers des messages/serveurs                                         |             |
-|              | **Phase 8 : Interfaces utilisateur**                                                                | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase 8 : Interfaces utilisateur**                                                                | [Manolo-dev](https://github.com/Manolo-dev) |
 | GTK          | Conception de l’interface graphique avec GTK                                                        |             |
 | Qt           | Portage/adaptation pour Qt (Windows)                                                                |             |
 | TUI          | Développement d’une interface en TUI (optionnelle)                                                  |             |
@@ -90,12 +90,22 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | Docs         | Rédaction de la documentation technique et utilisateur                                              |             |
 | Deploy       | Déploiement du serveur central et configuration                                                     |             |
 | Monitor      | Système de monitoring et d’alertes                                                                  |             |
-|              | **Phase SEC continue : Sécurité**                                                                   | [Manolo-dev](https://github.com/Manolo-dev)  |
+|              | **Phase SEC continue : Sécurité**                                                                   | [Skylord65](https://github.com/Skylord65)   |
 | Audit        | Audit de sécurité initial & revue des meilleures pratiques (open source)                            |             |
 | SecAudit     | Audit de sécurité continu et revue du code                                                          |             |
 | PatchSec     | Système de gestion et déploiement des mises à jour de sécurité                                      |             |
 | 2FA          | Authentification à deux facteurs (2FA)                                                              |             |
 | SecTests     | Tests de sécurité approfondis (pentests, vulnérabilités)                                            |             |
+|              | **Phase TEST : Tests**                                                                              |             |
+| UnitSockets  | Tests unitaires pour la gestion des sockets                                                         |             |
+| UnitChiff    | Tests unitaires pour le chiffrement                                                                 |             |
+| UnitDB       | Tests unitaires pour la base de données                                                             |             |
+| UnitReq      | Tests unitaires pour les requêtes                                                                   |             |
+| UnitLang     | Tests unitaires pour le mini-langage                                                                |             |
+| ManGTK       | Tests manuels de l’interface GTK                                                                    |             |
+| ManQt        | Tests manuels de l’interface Qt                                                                     |             |
+| ManTUI       | Tests manuels de l'interface TUI                                                                    |             |
+
 
 ### Dépendances des tâches
 
@@ -197,6 +207,17 @@ subgraph SEC["Phase SEC continue : Sécurité"]
   SEC_4(SecTests)
 end
 
+subgraph TEST["Phase TEST : Tests"]
+  TEST_0(UnitSockets)
+  TEST_1(UnitChiff)
+  TEST_2(UnitDB)
+  TEST_3(UnitReq)
+  TEST_4(UnitLang)
+  TEST_5(ManGTK)
+  TEST_6(ManQt)
+  TEST_7(ManTUI)
+end
+
 T0_0 --> T0_1
 T0_0 --> T0_2
 T0_1 --> T1_0
@@ -269,8 +290,15 @@ SEC_3 --> SEC_4
 SEC --> P8
 P6 --> P7
 P7 --> P8
+TEST_0 o--o P1
+TEST_1 o--o P1
+TEST_2 o--o P2
+TEST_3 o--o P2
+TEST_4 o--o P6
+TEST_5 o--o P8
+TEST_6 o--o P8
+TEST_7 o--o P8
 ```
-
 ## Contributeurs responsables
 
 ## Format des commits
