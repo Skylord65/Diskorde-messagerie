@@ -2,6 +2,10 @@
 
 ## Specifications
 
+### Tests
+
+On essayera de suivre les principes du TDD (Test-Driven Development) pour garantir la qualité du code et la fiabilité de l'application. Des tests unitaires et manuels seront réalisés en parallele des phases de le nécessitant.
+
 ### Langage
 
 Le langage de programmation choisi est le C pour sa rapidité d'exécution et sa portabilité. Il permettra de développer un serveur et un client multi-plateformes.
