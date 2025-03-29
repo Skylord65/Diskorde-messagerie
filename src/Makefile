@@ -2,14 +2,16 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c17 -g
 
-all: main
+boundary/obj/message.o: boundary/message.c boundary/message.h
+	$(CC) $(CFLAGS) -c boundary/message.c -o boundary/obj/message.o
 
-main: main.o
-	$(CC) $(CFLAGS) -o main main.o
+boundary/bin/client: boundary/client.c boundary/obj/message.o
+	$(CC) $(CFLAGS) -o boundary/bin/client boundary/client.c boundary/obj/message.o
 
+boundary/bin/serveur: boundary/serveur.c boundary/obj/message.o
+	$(CC) $(CFLAGS) -o boundary/bin/serveur boundary/serveur.c boundary/obj/message.o
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c
+all: boundary/bin/client boundary/bin/serveur
 
 clean:
-	rm -f main main.o
+	rm -f boundary/obj/*.o boundary/bin/client boundary/bin/serveur
