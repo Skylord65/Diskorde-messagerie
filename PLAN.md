@@ -440,5 +440,5 @@ TEST_7 o--o P8
 
 - **Modification d'une fonctionalité avec une erreur inconnue (ou obvieuse)**
   ```sh
-  git commit -m "fix(auth.c:login) : Correction de la fonction de connexion"
+  git commit -m "!fix(auth.c:login) : Correction de la fonction de connexion"
   ```
