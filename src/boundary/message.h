@@ -6,7 +6,15 @@
 typedef struct s_message{
     int lg_message;
     char message[LG_MAX];
+    t_User user_dest;
+    t_User user_src;
+
 }t_message;
+
+typedef struct s_User{
+    int socket;
+    char pseudo[LG_MAX];
+}t_User;
 
 extern void RemplirMessage(t_message *Bmessage, char *message);
 
