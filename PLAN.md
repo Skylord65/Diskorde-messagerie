@@ -312,7 +312,19 @@ TEST_7 o--o P8
 ### Grammaire BNF
 
 ```
-<commit> ::= <type> "(" <target> [":" <specifier>] ")" [":" <description>] [";" <commit>]
+<commit> ::= ["!"] <type> "(" <target> [":" <specifier>] ")" [":" <description>] [";" <commit>]
+
+<type_error> ::=
+  | "compilation"
+  | "runtime"
+  | "segfault"
+  | "memory"
+  | "undefined"
+  | "error"
+  | "warning"
+  | "assert"
+  | "exception"
+  | "panic"
 
 <type> ::=
   | "add"
@@ -323,6 +335,7 @@ TEST_7 o--o P8
   | "style"
   | "perf"
   | "chore"
+  | <type_error>
 
 <target> ::=
   | <file>
@@ -347,6 +360,18 @@ TEST_7 o--o P8
 
 ### Explication des éléments
 
+- **`!`** *(optionnel)* : Indique que le code ne compile pas ou produit une erreur. Si l'erreur est connue, elle peut être précisée comme un élément de type `type_error`.
+- **`type_error`** *(optionnel)* : Indique le type d'erreur rencontrée.
+  - `compilation` : Erreur de compilation.
+  - `runtime` : Erreur d'exécution.
+  - `segfault` : Erreur de segmentation.
+  - `memory` : Problème de mémoire.
+  - `undefined` : Comportement indéfini.
+  - `error` : Autre erreur.
+  - `warning` : Avertissement.
+  - `assert` : Échec d'une assertion.
+  - `exception` : Exception levée.
+  - `panic` : État critique du programme.
 - **`<type>`** : Indique la nature de la modification.
   - `add` : Ajout de code ou de fichiers.
   - `fix` : Correction de bug.
@@ -356,7 +381,6 @@ TEST_7 o--o P8
   - `style` : Changement de formatage sans impact sur le code.
   - `perf` : Amélioration des performances.
   - `chore` : Maintenance du projet sans impact direct sur le code.
-
 - **`<target>`** : Spécifie le fichier ou la fonctionnalité concernée.
 - **`<specifier>`** *(optionnel)* : Précise une ligne ou une fonction ciblée.
 - **`<description>`** *(optionnel)* : Fournit un message explicatif.
@@ -364,42 +388,57 @@ TEST_7 o--o P8
 
 ### Exemples
 
-1. **Ajout d'un fichier de documentation**
+- **Ajout d'un fichier de documentation**
   ```sh
   git commit -m "add(README.md) : Ajout du fichier README"
   ```
 
-2. **Correction d'un bug sur une ligne spécifique**
+- **Correction d'un bug sur une ligne spécifique**
   ```sh
   git commit -m "fix(main.c:42) : Correction du segfault ligne 42"
   ```
 
-3. **Ajout d'une nouvelle fonction**
+- **Ajout d'une nouvelle fonction**
   ```sh
   git commit -m "add(utils.c:parse_input) : Ajout de la fonction parse_input"
   ```
 
-4. **Refactorisation d'une fonction**
+- **Refactorisation d'une fonction**
   ```sh
   git commit -m "refactor(server.c:handle_request) : Simplification de la logique"
   ```
 
-5. **Modification du style (indentation, espaces, etc.)**
+- **Modification du style (indentation, espaces, etc.)**
   ```sh
   git commit -m "style(config.py) : Correction des indentations"
   ```
 
-6. **Amélioration des performances d'une boucle**
+- **Amélioration des performances d'une boucle**
   ```sh
   git commit -m "perf(matrix.c:multiply) : Optimisation de la multiplication des matrices"
   ```
 
-7. **Ajout de tests unitaires**
+- **Ajout de tests unitaires**
   ```sh
   git commit -m "test(math_utils.c) : Ajout des tests pour les fonctions mathématiques"
   ```
 
-8. **Modification de plusieurs fichiers dans un seul commit**
+- **Modification de plusieurs fichiers dans un seul commit**
   ```sh
   git commit -m "add(server.c:init_server) : Ajout de la fonction init_server; fix(client.c:connect) : Correction de la gestion des erreurs"
+  ```
+
+- **Ajout d'une nouvelle fonctionnalité produisant une erreur**
+  ```sh
+  git commit -m "!add(auth.c:login) : Ajout de la fonction de connexion; error(auth.c:login) : Erreur de segmentation lors de la connexion"
+  ```
+
+- **Ajout d'une nouvelle fonctionnalité avec un avertissement**
+  ```sh
+  git commit -m "add(auth.c:login) : Ajout de la fonction de connexion; warning(auth.c:login) : Avertissement sur l'utilisation de variables non initialisées"
+  ```
+
+- **Modification d'une fonctionalité avec une erreur inconnue (ou obvieuse)**
+  ```sh
+  git commit -m "fix(auth.c:login) : Correction de la fonction de connexion"
   ```
