@@ -46,14 +46,26 @@ int main(int argc, char const *argv[]){
             return EXIT_FAILURE;
         case 0:
             do {
-                RecevoirMessage(&message_recu, sid);
-                if (message_recu.lg_message == 0) {
-                    printf("Le serveur a fermé la connexion.\n");
-                    close(sid);
-                    exit(EXIT_FAILURE);
+                /* code du buffer pour entrer le message (temporairement le message envoyé sera "0123456")*/
+
+                char buffer[LG_MAX];
+                char c;
+                int i = 0;
+                scanf("%c", &c);
+                while (c != '\n' && i<LG_MAX-1) {
+                    buffer[i] = c;
+                    scanf("%c", &c);
+                    i++;
                 }
-                printf("(server) :");
-                AfficherMessage(message_recu);
+                buffer[i] = '\0';
+                /* ajouter une commande "/exit" pour quitter le buffer */
+
+                RemplirMessage(&message, buffer);
+
+                EnvoyerMessage(&message, sid);
+
+            printf("(client) :");
+            AfficherMessage(message);
                 
             } while (1);
             break;
@@ -62,13 +74,15 @@ int main(int argc, char const *argv[]){
         }
 
     do {
-        /* code du buffer pour entrer le message (temporairement le message envoyé sera "0123456")*/
-
-        EnvoyerMessage(&message, sid);
-
-        printf("(client) :");
-        AfficherMessage(message);
         
+        RecevoirMessage(&message_recu, sid);
+                if (message_recu.lg_message == 0) {
+                    printf("Le serveur a fermé la connexion.\n");
+                    close(sid);
+                    exit(EXIT_FAILURE);
+                }
+                printf("(server) :");
+                AfficherMessage(message_recu);
         
     } while (1);
     

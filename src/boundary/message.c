@@ -18,7 +18,7 @@ void RemplirMessage(t_message *Bmessage, char *message){
 void EnvoyerMessage(t_message *Bmessage, int socket){
 
     // Envoi de la longueur du message
-    if (send(socket, (char *)&Bmessage, sizeof(t_message), 0) == -1) {
+    if (send(socket, Bmessage, sizeof(t_message), 0) == -1) {
         perror("Erreur lors de l'envoi de la longueur du message.");
         exit(EXIT_FAILURE);
     }
@@ -26,7 +26,7 @@ void EnvoyerMessage(t_message *Bmessage, int socket){
 
 void RecevoirMessage(t_message *Bmessage, int socket){
     // Réception de la longueur du message
-    if (recv(socket, (char *)&Bmessage, sizeof(t_message), 0) == -1) {
+    if (recv(socket, Bmessage, sizeof(t_message), 0) == -1) {
         perror("Erreur lors de la réception de la longueur du message.");
         exit(EXIT_FAILURE);
     }

@@ -51,6 +51,7 @@ int main(void)
         if (client_sock>0 && fork()==0){
             while (1)
             {
+                
                 t_message message;
 
                 RecevoirMessage(&message, client_sock);
@@ -59,6 +60,7 @@ int main(void)
                 RemplirMessage(&message, "bien reçu");
                 printf("(server) :");
                 EnvoyerMessage(&message, client_sock);
+                AfficherMessage(message);
             }
             
         }
