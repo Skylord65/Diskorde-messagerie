@@ -27,6 +27,10 @@ Koncord met un accent particulier sur la sécurité des données et la confident
 
 Contrairement à des plateformes comme Discord, [qui ont reçu des investissements de sociétés telles que Tencent](https://en.wikipedia.org/wiki/Discord#History), Koncord est un projet indépendant et libre. Notre objectif est de fournir une alternative ouverte, transparente et respectueuse de la vie privée, sans lien avec des entités propriétaires.
 
+Le nom _"Koncord"_ est inspiré du mot _"concorde"_, symbole de l'entre-aide et de la coopération. Nous croyons fermement que le seul moyen d'avancer est de travailler ensemble.
+
+> _I consider that the golden rule requires that if I like a program I must share it with other people who like it._ - **Richard Stallman**
+
 ## Contribution
 
 Les contributions sont les bienvenues pour améliorer Koncord. Pour participer, veuillez consulter le fichier [PLAN.md](PLAN.md) pour comprendre notre feuille de route et notre processus de développement. Assurez-vous de respecter nos directives de contribution et de soumettre vos modifications via des pull requests sur GitHub.
