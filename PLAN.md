@@ -1,10 +1,10 @@
 # Plan de développement
 
-## Specifications
+## Spécifications
 
 ### Tests
 
-On essayera de suivre les principes du TDD (Test-Driven Development) pour garantir la qualité du code et la fiabilité de l'application. Des tests unitaires et manuels seront réalisés en parallele des phases de le nécessitant.
+On essayera de suivre les principes du TDD (Test-Driven Development) pour garantir la qualité du code et la fiabilité de l'application. Des tests unitaires et manuels seront réalisés en parallèle des phases qui le nécessitent.
 
 ### Langage
 
