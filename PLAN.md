@@ -307,6 +307,235 @@ TEST_7 o--o P8
 ```
 ## Contributeurs responsables
 
+## Format des identifiants
+
+### Nommage des fichiers
+
+Le nom des fichiers `.c` doit être en `snake_case.c`.
+Le nom des fichiers `.h` doit être en `snake_case.h`.
+Le nom des fichiers `.sh` doit être en `snake_case.sh`.
+Le nom des fichiers `.ml` doit être en `snake_case.ml`.
+Le nom des fichiers `.md` doit être en `UPPER_SNAKE_CASE.md`.
+Le nomes des fonctions doit être en `snake_case`.
+Le nom des variables doit être en `snake_case`.
+Le nom des constantes doit être en `UPPER_SNAKE_CASE`.
+Le nom des structures doit être en `PascalCase_s`.
+Le nom des énumérations doit être en `PascalCase_e`.
+Le nom des structures pointées doit être en `PascalCase_t` (nouveau type, typedef, faire très attention à ne pas générer de conflit avec un type POSIX).
+Les includes guards doivent être en `__UPPER_SNAKE_CASE_H__` (ex: `#ifndef __MY_HEADER_H__`) et leurs `endif` doivent indiquer le fichier source correspondant (ex: `#endif // __MY_HEADER_H__`).
+
+## Documentation
+
+Tous les fichiers, toutes les fonctions, struct, define (sauf pour les include guards), enum et variables globales (etc) du projet devront être documentées selon le format Doxygen suivant :
+
+```
+<doxygen_doc> ::= "/**" <EOL> <docs> "**/"
+
+<docs> ::=
+    | <doc_line> <EOL> <docs>
+    | <doc_line> <EOL>
+
+<doc_line> ::= "*" <doc_element>
+
+<doc_element> ::=
+    | "\\brief " <text>
+    | "\\param" <param_dir> " " <param_name> " " <text>
+    | "\\return " <text>
+    | "\\pre " <text>
+    | "\\post " <text>
+    | "\\file " <filename>
+    | "\\struct" <text>
+    | "\\enum" <text>
+    | "\\def" <text>
+    | "\\note " <text>
+    | "\\warning " <text>
+    | "\\example " <ex_code>
+    | "\\todo " <text>
+    | "\\deprecated " <text>
+    | "\\see " <ref>
+    | "\\author " <text>
+    | "\\date " <date_value>
+    | "\\version " <version_num>
+    | "\\details " <text>
+    | "\\exception " <ex_name> " " <text>
+    | "\\sa " <ref>
+
+<filename>   ::= r"[^\s\/]+(\.[a-zA-Z0-9]+)?"
+
+<text>       ::= r"[^\n]+"
+
+<date_value> ::= r"\d{2}/\d{2}/\d{4}" # JJ/MM/AAAA
+
+<version_num>::= r"\d+\.\d+\.\d+(\.\d+)*" # Exige major.minor.patch[.chore]
+
+<param_name> ::= r"[a-zA-Z_][a-zA-Z0-9_]*"
+
+<ex_code>    ::= r".*(\n\s*\*.*)*"
+
+<ref>        ::= r"[\w:]+(\(\))?(,\s*[\w:]+(\(\))?)*"
+
+<ex_name>    ::= r"[A-Z]\w+"
+
+<param_dir>  ::=
+  | "[in]"
+  | "[out]"
+  | "[in,out]"
+```
+
+### Structure obligatoire
+
+- `\brief` : Résumé concis de la fonction (2-3 lignes max)
+- `\param[in/out]` : Description des paramètres d'entrée/sortie
+- `\return` : Explication précise de la valeur de retour
+- `\pre` : Conditions nécessaires avant l'appel
+- `\post` :  Conditions nécessaires après l'appel
+
+### Éléments optionnels
+
+- `\file` : Nom du fichier documenté
+- `\struct` : Description d'une structure de données
+- `\enum` : Description d'une énumération
+- `\def` : Description d'une définition
+- `\note` : Informations complémentaires (choix techniques, limites)
+- `\warning` : Alertes critiques (allocations mémoire, effets de bord)
+- `\example` : Snippet d'utilisation réaliste avec sortie attendue
+- `\todo` : Liste des améliorations planifiées
+- `\deprecated` : Indication de fonctions à remplacer
+- `\see` : Références croisées (autres fonctions/fichiers)
+- `\author` : Auteur(s) principal(aux) de la fonction/fichier
+- `\date` : Date de création/modification (format JJ/MM/AAAA)
+- `\version` : Version associée à la fonctionnalité (suivant SemVer)
+- `\details` : Explications techniques approfondies (implémentation, algorithmes)
+- `\exception` : Comportements exceptionnels (erreurs non couvertes par le return)
+- `\sa` : "Voir aussi" (alias de `\see` pour les références croisées)
+
+### Bonnes pratiques
+
+- Documentation en français
+- Liens vers les spécifications techniques (RFC, schémas)
+- Cohérence entre `\pre/\post` et les assertions du code
+- Mise à jour synchrone avec les modifications de code
+
+### Exemples
+
+```c
+/**
+ * \author Manolo-dev
+ * \date 15/04/2024
+ * \version 1.2
+ * \brief Initialise une connexion socket sécurisée
+ * \param[in] hostname Nom du serveur (format FQDN)
+ * \param[in] port Port TCP (1024-65535)
+ * \param[out] ssl_ctx Contexte SSL initialisé
+ * \return 0 si succès, -1 pour erreur système, -2 pour erreur SSL
+ * \note Nécessite OpenSSL 3.0+ et une pile TCP/IP fonctionnelle
+ * \warning Ne pas oublier de libérer le contexte SSL avec SSL_CTX_free()
+ * \pre hostname doit être résoluble via DNS
+ * \post Le socket est bindé et en état LISTEN
+ * \example
+ * SSL_CTX *ctx;
+ * if(init_ssl_socket("example.com", 443, &ctx) == 0) {
+ *   printf("Connexion établie !\n");
+ * }
+ * \todo Ajouter support TLS 1.3
+ * \see SSL_CTX_new(), socket()
+ * \deprecated Remplacée par init_quic_connection() dans v2.0
+**/
+int init_ssl_socket(const char* hostname, int port, SSL_CTX** ssl_ctx);
+```
+
+```c
+/**
+ * \struct serverConfig_s
+ * \brief Configuration globale du serveur
+ * \details Stocke les paramètres réseau et sécurité du serveur.
+ *          Persistée dans un fichier JSON via save_config().
+ * \note La structure doit être initialisée avec init_server_config()
+ * \warning Modification nécessitant un redémarrage du serveur
+ * \example
+ * struct server_config cfg = {
+ *     .max_connections = 1000,
+ *     .ssl_enabled = 1,
+ *     .timeout = 300
+ * };
+**/
+struct serverConfig_s {
+    int max_connections;
+    int ssl_enabled;
+    int timeout;
+};
+```
+
+```c
+/**
+ * \struct serverStats_s
+ * \brief Statistiques temps-réel du serveur
+**/
+struct serverStats_s {
+    /**
+     * \brief Requêtes traitées (lues depuis le dernier reboot)
+     * \note Compteur 64 bits atomique
+     * \warning Ne pas modifier directement
+     */
+    _Atomic uint64_t total_requests;
+    /**
+     * \brief Latence moyenne en microsecondes
+     * \details Calculée sur une fenêtre glissante de 60s
+     */
+    double avg_latency;
+};
+```
+
+```c
+/**
+ * \enum connectionState_e
+ * \brief État de la connexion
+ * \details Utilisé pour suivre l'état de chaque connexion
+ * \note Les états sont définis dans le fichier config.h
+ * \warning Ne pas modifier les valeurs directement
+ * \sa connection_pool
+**/
+enum connectionState_e {
+    DISCONNECTED = 0, /**< Non connecté */
+    CONNECTING,       /**< En cours de connexion */
+    CONNECTED,        /**< Connecté */
+    DISCONNECTING     /**< En cours de déconnexion */
+};
+```
+
+```c
+/**
+ * \file connection_pool.h
+ * \brief Gestion des connexions actives
+ * \details Permet de suivre les connexions actives et leur état.
+ * \author Rhexephon
+ * \date 15/04/2024
+ * \version 1.0
+ * \warning Ne pas accéder directement au tableau sans verrou
+ * \note Utilise un mutex pour éviter les accès concurrents
+**/
+```
+
+```c
+/**
+ * \brief Pool de connexions actives
+ * \details Tableau dynamique géré par pthread pour les connexions concurrentes.
+ * \warning Accès concurrentiel - utiliser mutex_lock() avant modification
+ * \note Taille maximale définie par MAX_POOL_SIZE dans config.h
+ * \sa add_connection(), remove_connection()
+**/
+extern pthread_t connection_pool[MAX_POOL_SIZE];
+```
+
+```c
+/**
+ * \def MAX_PAYLOAD
+ * \brief Taille max des pajets réseau (octets)
+ * \warning Ne pas dépasser 65535 @see RFC 793
+ */
+#define MAX_PAYLOAD 65535
+```
+
 ## Format des commits
 
 ### Grammaire BNF
@@ -340,8 +569,11 @@ TEST_7 o--o P8
 <target> ::=
   | <file>
   | <feature>
+  | <directory>
 
 <file> ::= r"[^/\0]+"
+
+<directory> ::= r"[^/\0]+(/[^/\0]+)*/"
 
 <feature> ::= <identifier>
 
