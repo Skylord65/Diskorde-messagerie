@@ -7,6 +7,13 @@
 #include <arpa/inet.h>
 #include "message.h"
 
+/** 
+ * \file server.c
+ * \brief Gestion du serveur
+ * \author Skylord65
+ * \date 03/05/2025
+ **/
+
 int main(void)
 {
     int sid;
@@ -52,15 +59,15 @@ int main(void)
             while (1)
             {
                 
-                t_message message;
+                Message_t message;
 
-                RecevoirMessage(&message, client_sock);
+                receive_message(&message, client_sock);
                 printf("(client) :");
-                AfficherMessage(message);
-                RemplirMessage(&message, "bien reçu");
+                print_message(message);
+                fill_message(&message, "bien reçu");
                 printf("(server) :");
-                EnvoyerMessage(&message, client_sock);
-                AfficherMessage(message);
+                send_message(&message, client_sock);
+                print_message(message);
             }
             
         }

@@ -4,35 +4,43 @@
 #include <string.h>
 #include <sys/socket.h>
 
+/** 
+ * \file message.c
+ * \brief Gestion des messages \see message.h
+ * \author Skylord65
+ * \date 03/05/2025
+ **/
+
+
 #define LG_MAX 1000
 
-void RemplirMessage(t_message *Bmessage, char *message){
-    Bmessage->lg_message = strlen(message);
-    if (Bmessage->lg_message > LG_MAX) {
+void fill_message(Message_t *Message, char *message){
+    Message->lg_message = strlen(message);
+    if (Message->lg_message > LG_MAX) {
         fprintf(stderr, "Erreur : le message dépasse la longueur maximale.\n");
         exit(EXIT_FAILURE);
     }
-    strcpy(Bmessage->message, message);
+    strcpy(Message->Message, message);
 }
 
-void EnvoyerMessage(t_message *Bmessage, int socket){
+void send_message(Message_t *Message, int socket){
 
     // Envoi de la longueur du message
-    if (send(socket, Bmessage, sizeof(t_message), 0) == -1) {
+    if (send(socket, Message, sizeof(Message_t), 0) == -1) {
         perror("Erreur lors de l'envoi de la longueur du message.");
         exit(EXIT_FAILURE);
     }
 }
 
-void RecevoirMessage(t_message *Bmessage, int socket){
+void receive_message(Message_t *Message, int socket){
     // Réception de la longueur du message
-    if (recv(socket, Bmessage, sizeof(t_message), 0) == -1) {
+    if (recv(socket, Message, sizeof(Message_t), 0) == -1) {
         perror("Erreur lors de la réception de la longueur du message.");
         exit(EXIT_FAILURE);
     }
 }
 
-void AfficherMessage(t_message Bmessage){
-    printf("Message : %s\n", Bmessage.message);
-    printf("Longueur du message : %d\n", Bmessage.lg_message);
+void print_message(Message_t Message){
+    printf("Message : %s\n", Message.Message);
+    printf("Longueur du message : %d\n", Message.lg_message);
 }

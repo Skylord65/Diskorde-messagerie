@@ -7,13 +7,20 @@
 #include <arpa/inet.h>
 #include "message.h"
 
+/** 
+ * \file client.c
+ * \brief Gestion du client
+ * \author Skylord65
+ * \date 03/05/2025
+ **/
+
 #define LG_MAX 1000
 
 
 int main(int argc, char const *argv[]){
-    t_message message_recu, message;
+    Message_t message_recu, message;
 
-    RemplirMessage(&message, "message");
+    fill_message(&message, "message");
 
     if (argc!= 3){
         perror("Problème sur le nombre de paramètres.");
@@ -46,7 +53,7 @@ int main(int argc, char const *argv[]){
             return EXIT_FAILURE;
         case 0:
             do {
-                /* code du buffer pour entrer le message (temporairement le message envoyé sera "0123456")*/
+                /** code du buffer pour entrer le message (temporairement le message envoyé sera "message") */
 
                 char buffer[LG_MAX];
                 char c;
@@ -60,12 +67,12 @@ int main(int argc, char const *argv[]){
                 buffer[i] = '\0';
                 /* ajouter une commande "/exit" pour quitter le buffer */
 
-                RemplirMessage(&message, buffer);
+                fill_message(&message, buffer);
 
-                EnvoyerMessage(&message, sid);
+                send_message(&message, sid);
 
-            printf("(client) :");
-            AfficherMessage(message);
+                printf("(client) :");
+                print_message(message);
                 
             } while (1);
             break;
@@ -75,14 +82,14 @@ int main(int argc, char const *argv[]){
 
     do {
         
-        RecevoirMessage(&message_recu, sid);
-                if (message_recu.lg_message == 0) {
-                    printf("Le serveur a fermé la connexion.\n");
-                    close(sid);
-                    exit(EXIT_FAILURE);
-                }
-                printf("(server) :");
-                AfficherMessage(message_recu);
+        receive_message(&message_recu, sid);
+        if (message_recu.lg_message == 0) {
+            printf("Le serveur a fermé la connexion.\n");
+            close(sid);
+            exit(EXIT_FAILURE);
+        }
+        printf("(server) :");
+        print_message(message_recu);
         
     } while (1);
     

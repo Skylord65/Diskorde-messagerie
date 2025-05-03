@@ -1,27 +1,76 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#ifndef __MESSAGE_H__
+#define __MESSAGE_H__
 
+/** 
+ * \file message.h
+ * \brief Gestion des messages
+ * \author Skylord65
+ * \date 03/05/2025
+ **/
+
+
+ /**
+ * \def LG_MAX
+ * \brief Taille max des message (octets)
+ */
 #define LG_MAX 1000
 
-typedef struct s_message{
+
+/**
+ * \struct Message_s
+ * \brief Information d'un message
+**/
+typedef struct Message_s{
     int lg_message;
-    char message[LG_MAX];
-    t_User user_dest;
-    t_User user_src;
+    char Message[LG_MAX];
 
-}t_message;
+}Message_t;
 
-typedef struct s_User{
-    int socket;
-    char pseudo[LG_MAX];
-}t_User;
+/**
+ * \author Skylord65
+ * \date 03/05/2025
+ * \version 0
+ * \brief Rempli une structure message_t
+ * \param[in] Message structure qui devra contenir le message
+ * \param[in] message chaine de caractère contenant le message
+ * \pre message déjà aloué
+ * \post 
+**/
+extern void fill_message(Message_t *Message, char *message);
 
-extern void RemplirMessage(t_message *Bmessage, char *message);
+/**
+ * \author Skylord65
+ * \date 03/05/2025
+ * \version 0
+ * \brief Rempli une structure message_t
+ * \param[in] Message structure qui devra contenir le message
+ * \pre structure déjà aloué
+ * \post 
+**/
+extern void print_message(Message_t Message);
 
-extern void AfficherMessage(t_message Bmessage);
+/**
+ * \author Skylord65
+ * \date 03/05/2025
+ * \version 0
+ * \brief Evoie une structure message_t
+ * \param[in] Message structure qui devra contenir le message envoyé
+ * \param[in] socket entier d'identification du socket permettant la communication réseau
+ * \pre socket déjà initialisé et structure remplie
+ * \post 
+**/
+extern void send_message(Message_t *Message, int socket);
 
-extern void EnvoyerMessage(t_message *Bmessage, int socket);
+/**
+ * \author Skylord65
+ * \date 03/05/2025
+ * \version 0
+ * \brief Reçoit une structure message_t
+ * \param[in] Message structure qui devra contenir le message reçu
+ * \param[in] socket entier d'identification du socket permettant la communication réseau
+ * \pre socket déjà initialisé
+ * \post 
+**/
+extern void receive_message(Message_t *Message, int socket);
 
-extern void RecevoirMessage(t_message *Bmessage, int socket);
-
-#endif
+#endif // __MESSAGE_H__
