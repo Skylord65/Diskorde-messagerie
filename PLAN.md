@@ -10,8 +10,6 @@ On essayera de suivre les principes du TDD (Test-Driven Development) pour garant
 
 Le langage de programmation choisi est le C pour sa rapidité d'exécution et sa portabilité. Il permettra de développer un serveur et un client multi-plateformes.
 
-Nous développons un système de gestion base de données en OCaml, simple, minimal et sans fonctionnalités superflues.
-
 ### Architecture
 
 ECB (Entity-Control-Boundary) semble être une architecture adaptée à notre projet. Elle permet de séparer les différentes parties de l'application de manière claire et efficace tout en permettant une portabilité et une évolutivité du code.
@@ -39,11 +37,9 @@ Le protocole de communication sera basé sur des sockets TCP/IP. Il devra être 
 | MsgSimple    | Implémentation d’une gestion simple des messages (envoi/réception)                                  |             |
 | Serveurs     | Création et gestion de serveurs                                                                     |             |
 |              | **Phase 2 : Gestion du stockage des données**                                                       | [Manolo-dev](https://github.com/Manolo-dev) |
-| DBStruct     | Choix et mise en place de la structure de stockage (arbre B, skiplist, autre)                       |             |
-| DBStorage    | Stockage et récupération des données en mémoire et sur disque                                       |             |
-| DBLang       | Création d’un langage de requêtes pour interagir avec la base de données                            |             |
-| DBAPI        | Définition de l’API pour interagir avec la base de données                                          |             |
+| DBStruct     | Choix et mise en place de la base données (SQLite, PostgreSQL, etc.)                                |             |
 | DBSchema     | Création des schémas de base de données (utilisateurs, messages, salons, messages)                  |             |
+| DBQueries    | Requêtes de base pour la récupération et la manipulation des données                                |             |
 |              | **Phase 3 : Gestion des utilisateurs et des salons**                                                | [Skylord65](https://github.com/Skylord65)   |
 | Utilisateurs | Gestion des utilisateurs (inscription, création de compte, connexion, rôles)                        |             |
 | Salons       | Gestion et catégorisation des salons (textuels, vocaux, vidéos)                                     |             |
@@ -133,10 +129,8 @@ end
 
 subgraph P2["Phase 2 : Gestion du stockage des données"]
   T2_0(DBStruct)
-  T2_1(DBStorage)
-  T2_2(DBLang)
-  T2_3(DBAPI)
-  T2_4(DBSchema)
+  T2_1(DBSchema)
+  T2_2(DBQueries)
 end
 
 subgraph P3["Phase 3 : Gestion des utilisateurs et des salons"]
@@ -238,14 +232,14 @@ T1_3 --> T4_6
 T1_3 --> T5_2
 T1_4 --> T3_1
 T2_0 --> T2_1
-T2_1 --> T2_2
-T2_2 --> T2_3
-T2_4 --> T3_0
-T2_4 --> T3_1
-T2_4 --> T3_2
-T2_3 --> T3_0
-T2_3 --> T3_1
-T2_3 --> T3_3
+T2_1 --> T2_1
+T2_1 --> T2_1
+T2_2 --> T3_0
+T2_2 --> T3_1
+T2_2 --> T3_2
+T2_1 --> T3_0
+T2_1 --> T3_1
+T2_1 --> T3_3
 T3_0 --> T3_2
 T3_0 --> T3_4
 T3_0 --> T3_5
@@ -613,6 +607,7 @@ extern pthread_t connection_pool[MAX_POOL_SIZE];
   - `style` : Changement de formatage sans impact sur le code.
   - `perf` : Amélioration des performances.
   - `chore` : Maintenance du projet sans impact direct sur le code.
+  - `rough` : Pour les fichiers ou le code temporaire, d'expérimentation ou de brouillon.
 - **`<target>`** : Spécifie le fichier ou la fonctionnalité concernée.
 - **`<specifier>`** *(optionnel)* : Précise une ligne ou une fonction ciblée.
 - **`<description>`** *(optionnel)* : Fournit un message explicatif.

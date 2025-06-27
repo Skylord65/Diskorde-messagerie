@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c17 -g
 
-SRV_SRCS = src/controler/serveur.c
+SRV_SRCS = src/controler/server.c
 CLI_SRCS = src/controler/client.c
 MSG_SRCS = src/controler/message.c
 
@@ -10,7 +10,7 @@ SRV_OBJS = $(SRV_SRCS:.c=.o)
 CLI_OBJS = $(CLI_SRCS:.c=.o)
 MSG_OBJS = $(MSG_SRCS:.c=.o)
 
-SRV_EXEC = serveur
+SRV_EXEC = server
 CLI_EXEC = client
 MSG_EXEC = message
 
