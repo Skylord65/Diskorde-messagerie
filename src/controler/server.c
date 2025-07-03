@@ -7,6 +7,8 @@
 #include <arpa/inet.h>
 #include "message.h"
 
+#define MAX_USER 100
+
 /** 
  * \file server.c
  * \brief Gestion du serveur
@@ -17,6 +19,11 @@
 int main(void)
 {
     int sid;
+    User_t user_list[MAX_USER];
+
+    for (int i = 0; i < MAX_USER; i++){
+        user_list[i].socket = 0;
+    }
 
     sid = socket(AF_INET, SOCK_STREAM, 0);
     if (sid==-1){
@@ -56,11 +63,22 @@ int main(void)
         printf("Connexion acceptée.\n");
 
         if (client_sock>0 && fork()==0){
+
+            Message_t message;
+
+            receive_message(&message, client_sock);
+
+            for (int i = 0; i < MAX_USER; i++) {
+            if (user_list[i].socket == 0) {
+                user_list[i].socket = client_sock;
+                strncpy(user_list[i].pseudo, &message, sizeof(user_list[i].pseudo));
+                printf("Client %s connecté\n", user_list[i].pseudo);
+                break;
+            }
+        }
+
             while (1)
             {
-                
-                Message_t message;
-
                 receive_message(&message, client_sock);
                 printf("(client) :");
                 print_message(message);

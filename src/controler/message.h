@@ -27,6 +27,14 @@ typedef struct Message_s{
 }Message_t;
 
 /**
+ * \struct User_s
+ * \brief Information d'un utilisateur
+ */
+typedef struct User_s {
+    int socket;
+    char pseudo[50];
+} User_t;
+/**
  * \author Skylord65
  * \date 03/05/2025
  * \version 0
